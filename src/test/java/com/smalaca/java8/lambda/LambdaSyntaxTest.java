@@ -25,6 +25,13 @@ public class LambdaSyntaxTest {
     }
 
     @Test
+    public void shouldInvokeMethodWithOneInputParameter() {
+        trigger.process(first -> first);
+
+        assertThat(trigger.received()).isEqualTo(FIRST_PARAMETER);
+    }
+
+    @Test
     public void shouldInvokeMethodWithoutInputParameters() {
         trigger.process(() -> 13);
 

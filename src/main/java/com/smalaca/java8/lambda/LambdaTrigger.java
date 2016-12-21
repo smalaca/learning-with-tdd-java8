@@ -14,6 +14,10 @@ class LambdaTrigger {
         result = lambda.calculate(firstParameter, secondParameter);
     }
 
+    void process(LambdaWithInputParameter lambda) {
+        result = lambda.calculate(firstParameter);
+    }
+
     void process(LambdaWithoutInput lambda) {
         result = lambda.calculate();
     }
