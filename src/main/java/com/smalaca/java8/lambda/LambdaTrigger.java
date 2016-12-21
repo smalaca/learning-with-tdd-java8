@@ -10,7 +10,7 @@ class LambdaTrigger {
         this.secondParameter = secondParameter;
     }
 
-    void process(LambdaWithInput lambda) {
+    void process(LambdaWithInputParameters lambda) {
         result = lambda.calculate(firstParameter, secondParameter);
     }
 

@@ -1,5 +1,5 @@
 package com.smalaca.java8.lambda;
 
-interface LambdaWithInput {
+interface LambdaWithInputParameters {
     int calculate(int firstParameter, int secondParameter);
 }
