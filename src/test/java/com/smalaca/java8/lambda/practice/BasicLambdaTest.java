@@ -39,7 +39,7 @@ public class BasicLambdaTest {
     }
 
     @Test
-    public void shouldRecognizeStringWithELetter() {
+    public void shouldSortDueToExistenceOfTheLetterEInString() {
         String[] strings = aStringsArray();
 
         sort(strings, (first, second) -> second.contains("e") ? 1 : -1);
