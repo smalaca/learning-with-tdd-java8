@@ -19,6 +19,14 @@ public class LambdaVariableScopingTest {
     }
 
     @Test
+    public void shoulBeAbleToUseLocalVariable() {
+        int toBeUsedInLambda = 7;
+        trigger.process(first -> first = toBeUsedInLambda + first);
+
+        assertThat(trigger.received()).isEqualTo(76);
+    }
+
+    @Test
     public void shouldMatchInstanceVariable() {
         trigger.process(toUseInLambda -> this.toUseInLambda = this.toUseInLambda + toUseInLambda);
 
