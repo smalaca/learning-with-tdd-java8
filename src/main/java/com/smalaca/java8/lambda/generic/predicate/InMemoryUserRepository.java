@@ -6,12 +6,13 @@ import com.smalaca.java8.lambda.generic.predicate.domain.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class InMemoryUserRepository {
     private final List<User> users = new ArrayList<>();
 
-    public boolean exist(User user) {
+    boolean exist(User user) {
         return users.contains(user);
     }
 
@@ -19,7 +20,7 @@ public class InMemoryUserRepository {
         users.add(user);
     }
 
-    public User findBy(Login login) {
+    User findBy(Login login) {
         for (User user : users) {
             if (user.hasLoginEqualTo(login)) {
                 return user;
@@ -29,7 +30,7 @@ public class InMemoryUserRepository {
         throw new NotExistingUserException();
     }
 
-    public User findBy(Name name) {
+    User findBy(Name name) {
         for (User user : users) {
             if (user.hasNameEqualTo(name)) {
                 return user;
@@ -47,5 +48,9 @@ public class InMemoryUserRepository {
         }
 
         throw new NotExistingUserException();
+    }
+
+    public User findUserBy(Function<List<User>, User> function) {
+        return function.apply(users);
     }
 }

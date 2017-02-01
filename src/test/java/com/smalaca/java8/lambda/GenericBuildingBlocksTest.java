@@ -35,4 +35,14 @@ public class GenericBuildingBlocksTest {
 
         assertThat(result).isSameAs(SEBASTIAN_MALACA);
     }
+
+    @Test
+    public void shouldFindByLoginWithFunctionInterface() {
+        repository.add(SEBASTIAN_MALACA);
+        repository.add(OTHER_USER);
+
+        User result = repository.findUserBy(users -> users.stream().filter(user -> user.hasLoginEqualTo(LOGIN)).findAny().get());
+
+        assertThat(result).isSameAs(SEBASTIAN_MALACA);
+    }
 }
