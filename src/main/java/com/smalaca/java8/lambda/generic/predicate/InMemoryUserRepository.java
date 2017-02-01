@@ -6,6 +6,7 @@ import com.smalaca.java8.lambda.generic.predicate.domain.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -40,9 +41,9 @@ public class InMemoryUserRepository {
         throw new NotExistingUserException();
     }
 
-    public User findBy(Predicate<User> predicate) {
+    public User findBy(Predicate<User> determiner) {
         for (User user : users) {
-            if (predicate.test(user)) {
+            if (determiner.test(user)) {
                 return user;
             }
         }
@@ -50,7 +51,12 @@ public class InMemoryUserRepository {
         throw new NotExistingUserException();
     }
 
-    public User findUserBy(Function<List<User>, User> function) {
-        return function.apply(users);
+    public User findUserBy(Function<List<User>, User> determiner) {
+        return determiner.apply(users);
+    }
+
+    public String findByLoginUserCard(Login login, BinaryOperator<String> cardView) {
+        User user = findBy(login);
+        return cardView.apply(user.login(), user.name());
     }
 }

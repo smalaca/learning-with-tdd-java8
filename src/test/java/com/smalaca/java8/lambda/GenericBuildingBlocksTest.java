@@ -43,4 +43,11 @@ public class GenericBuildingBlocksTest {
 
         assertThat(result).isSameAs(SEBASTIAN_MALACA);
     }
+
+    @Test
+    public void shouldReturnIdentificationOfTheUser() {
+        String card = repository.findByLoginUserCard(LOGIN, (login, name) -> "Login: " + login + ", Name: " + name + ".");
+
+        assertThat(card).isEqualTo("Login: smalaca, Name: Sebastian Malaca.");
+    }
 }

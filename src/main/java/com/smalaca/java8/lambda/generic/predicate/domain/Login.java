@@ -22,4 +22,9 @@ public class Login {
     public int hashCode() {
         return login.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return login;
+    }
 }

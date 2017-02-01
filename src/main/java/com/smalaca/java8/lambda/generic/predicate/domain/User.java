@@ -16,4 +16,12 @@ public class User {
     public boolean hasNameEqualTo(Name name) {
         return this.name.equals(name);
     }
+
+    public String login() {
+        return login.toString();
+    }
+
+    public String name() {
+        return name.toString();
+    }
 }

@@ -25,4 +25,9 @@ public class Name {
         result = 31 * result + lastName.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }
