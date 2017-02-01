@@ -52,11 +52,19 @@ public class GenericBuildingBlocksTest {
     }
 
     @Test
-    public void shouldBloc() {
+    public void shouldBlockUser() {
         assertThat(repository.findBy(LOGIN).isBlocked()).isFalse();
 
         repository.block(LOGIN, user -> user.block());
 
         assertThat(repository.findBy(LOGIN).isBlocked()).isTrue();
+    }
+
+    @Test
+    public void shouldCreateNullObjectUser() {
+        User user = repository.create(() -> new User(new Login("guest"), new Name("Dummy", "User")));
+
+        assertThat(user.login()).isEqualTo("guest");
+        assertThat(user.name()).isEqualTo("Dummy User");
     }
 }

@@ -10,6 +10,7 @@ import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class InMemoryUserRepository {
     private final List<User> users = new ArrayList<>();
@@ -63,5 +64,9 @@ public class InMemoryUserRepository {
 
     public void block(Login login, Consumer<User> consumer) {
         consumer.accept(findBy(login));
+    }
+
+    public User create(Supplier<User> factoryMethod) {
+        return factoryMethod.get();
     }
 }

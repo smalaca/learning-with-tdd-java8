@@ -1,8 +1,8 @@
 package com.smalaca.java8.lambda.generic.predicate.domain;
 
 public class User {
-    private final Login login;
-    private final Name name;
+    private Login login;
+    private Name name;
     private boolean blocked;
 
     public User(Login login, Name name) {
