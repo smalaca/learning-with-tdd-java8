@@ -4,6 +4,7 @@ import com.smalaca.java8.lambda.generic.predicate.InMemoryUserRepository;
 import com.smalaca.java8.lambda.generic.predicate.domain.Login;
 import com.smalaca.java8.lambda.generic.predicate.domain.Name;
 import com.smalaca.java8.lambda.generic.predicate.domain.User;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,11 +17,14 @@ public class GenericBuildingBlocksTest {
 
     private InMemoryUserRepository repository = new InMemoryUserRepository();
 
-    @Test
-    public void shouldFindByLoginWithPredicateInterface() {
+    @Before
+    public void givenUsersInTheRepository() {
         repository.add(SEBASTIAN_MALACA);
         repository.add(OTHER_USER);
+    }
 
+    @Test
+    public void shouldFindByLoginWithPredicateInterface() {
         User result = repository.findBy(user -> user.hasLoginEqualTo(LOGIN));
 
         assertThat(result).isSameAs(SEBASTIAN_MALACA);
@@ -28,9 +32,6 @@ public class GenericBuildingBlocksTest {
 
     @Test
     public void shouldFindByNameWithPredicateInterface() {
-        repository.add(SEBASTIAN_MALACA);
-        repository.add(OTHER_USER);
-
         User result = repository.findBy(user -> user.hasNameEqualTo(NAME));
 
         assertThat(result).isSameAs(SEBASTIAN_MALACA);
@@ -38,9 +39,6 @@ public class GenericBuildingBlocksTest {
 
     @Test
     public void shouldFindByLoginWithFunctionInterface() {
-        repository.add(SEBASTIAN_MALACA);
-        repository.add(OTHER_USER);
-
         User result = repository.findUserBy(users -> users.stream().filter(user -> user.hasLoginEqualTo(LOGIN)).findAny().get());
 
         assertThat(result).isSameAs(SEBASTIAN_MALACA);
