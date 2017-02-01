@@ -6,6 +6,7 @@ import com.smalaca.java8.lambda.generic.predicate.domain.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class InMemoryUserRepository {
     private final List<User> users = new ArrayList<>();
@@ -36,6 +37,15 @@ public class InMemoryUserRepository {
         }
 
         throw new NotExistingUserException();
+    }
 
+    public User findBy(Predicate<User> predicate) {
+        for (User user : users) {
+            if (predicate.test(user)) {
+                return user;
+            }
+        }
+
+        throw new NotExistingUserException();
     }
 }
