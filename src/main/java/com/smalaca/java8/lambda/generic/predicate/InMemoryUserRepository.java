@@ -7,6 +7,7 @@ import com.smalaca.java8.lambda.generic.predicate.domain.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BinaryOperator;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -21,7 +22,7 @@ public class InMemoryUserRepository {
         users.add(user);
     }
 
-    User findBy(Login login) {
+    public User findBy(Login login) {
         for (User user : users) {
             if (user.hasLoginEqualTo(login)) {
                 return user;
@@ -58,5 +59,9 @@ public class InMemoryUserRepository {
     public String findByLoginUserCard(Login login, BinaryOperator<String> cardView) {
         User user = findBy(login);
         return cardView.apply(user.login(), user.name());
+    }
+
+    public void block(Login login, Consumer<User> consumer) {
+        consumer.accept(findBy(login));
     }
 }

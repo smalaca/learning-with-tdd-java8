@@ -50,4 +50,13 @@ public class GenericBuildingBlocksTest {
 
         assertThat(card).isEqualTo("Login: smalaca, Name: Sebastian Malaca.");
     }
+
+    @Test
+    public void shouldBloc() {
+        assertThat(repository.findBy(LOGIN).isBlocked()).isFalse();
+
+        repository.block(LOGIN, user -> user.block());
+
+        assertThat(repository.findBy(LOGIN).isBlocked()).isTrue();
+    }
 }
