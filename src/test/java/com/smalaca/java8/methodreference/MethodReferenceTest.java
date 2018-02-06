@@ -14,7 +14,7 @@ public class MethodReferenceTest {
     public void shouldCalculateAreaOfSquareUsingStaticMethodOfTheClass() {
         Square square = new Square(13.0);
 
-        double result = calculator.calculateAreOf(square, ShapeUtils::area);
+        double result = calculator.calculateAreaOf(square, ShapeUtils::area);
 
         assertThat(result).isEqualTo(169.0);
     }
@@ -23,7 +23,7 @@ public class MethodReferenceTest {
     public void shouldCalculateAreaOfSquareUsingInstanceMethodOfTheClass() {
         Square square = new Square(13.0);
 
-        double result = calculator.calculateAreOf(square, Square::area);
+        double result = calculator.calculateAreaOf(square, Square::area);
 
         assertThat(result).isEqualTo(169.0);
     }
@@ -32,7 +32,7 @@ public class MethodReferenceTest {
     public void shouldCalculateAreaOfSquareUsingInstanceMethodOfTheVariable() {
         Square square = new Square(13.0);
 
-        double result = calculator.calculateAreOf(square, square::calculateAreaOf);
+        double result = calculator.calculateAreaOf(square, square::calculateAreaOf);
 
         assertThat(result).isEqualTo(169.0);
     }

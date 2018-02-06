@@ -4,7 +4,7 @@ import com.smalaca.java8.methodreference.shapes.Square;
 import com.smalaca.java8.methodreference.shapes.SquareFactory;
 
 public class Calculator {
-    public double calculateAreOf(Square square, Operation operation) {
+    public double calculateAreaOf(Square square, Operation operation) {
         return operation.area(square);
     }
 
